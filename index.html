@@ -328,6 +328,16 @@
   .feature__shot img { display: block; width: 100%; height: auto; }
   .feature__shot figcaption { padding: .6rem .9rem; background: var(--surface); color: var(--muted); font-size: .85rem; border-block-start: 1px solid var(--line); }
 
+  .feature--alt .feature__body { order: 2; }
+  .pipeline { list-style: none; margin: 0; padding: clamp(1.2rem, 2.5vw, 1.8rem); border-radius: 12px; background: var(--night); color: var(--on-night); border: 1px solid var(--night-line); display: grid; gap: .6rem; counter-reset: step; }
+  .pipeline__stage { font-size: .7rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--accent-bright); margin-block: .4rem .1rem; }
+  .pipeline__stage:first-child { margin-block-start: 0; }
+  .pipeline__step { position: relative; padding: .8rem 1rem .8rem 3rem; border: 1px solid var(--night-line); border-radius: 10px; background: var(--night-2); font-size: .95rem; line-height: 1.45; }
+  .pipeline__step::before { counter-increment: step; content: counter(step); position: absolute; inset-inline-start: .9rem; inset-block-start: .78rem; width: 1.4rem; height: 1.4rem; border-radius: 50%; display: grid; place-items: center; font-size: .78rem; font-weight: 700; background: var(--accent-bright); color: var(--night); }
+  .pipeline__step b { display: block; color: var(--on-night); }
+  .pipeline__step span { color: var(--on-night-muted); font-size: .88rem; }
+  .status { display: inline-block; padding: .2rem .65rem; border-radius: 999px; border: 1px solid var(--accent); color: var(--accent-ink); font-size: .72rem; letter-spacing: .12em; }
+
   /* Kind words */
   .quotes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1rem, 3vw, 2rem); }
   .quote { margin: 0; display: flex; flex-direction: column; }
@@ -382,6 +392,7 @@
   }
   @media (max-width: 900px) {
     .feature { grid-template-columns: 1fr; }
+    .feature--alt .feature__body { order: 0; }
   }
   @media (max-width: 900px) {
     .nav, .header__cta { display: none; }
@@ -456,7 +467,7 @@
     <div class="header__actions">
       <a class="social" href="https://www.linkedin.com/in/mohamed-sadik-2001" target="_blank" rel="noopener noreferrer" aria-label="My LinkedIn profile (opens in a new tab)" title="LinkedIn"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg></a>
       <a class="social" href="https://github.com/msadik-Dev" target="_blank" rel="noopener noreferrer" aria-label="My GitHub profile (opens in a new tab)" title="GitHub"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
-      <a class="btn btn--primary btn--small header__cta" href="#contact">Get in touch</a>
+      <a class="btn btn--primary btn--small header__cta" href="/contactme">Get in touch</a>
       <details class="menu">
         <summary><span class="menu__icon" aria-hidden="true"></span><span class="menu__label">Menu</span></summary>
         <nav class="menu__panel" aria-label="Mobile">
@@ -465,7 +476,7 @@
             <li><a href="#projects">Projects</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#experience">Experience</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="/contactme">Contact</a></li>
             <li><a href="https://www.linkedin.com/in/mohamed-sadik-2001" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
             <li><a href="https://github.com/msadik-Dev" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li>
           </ul>
@@ -573,20 +584,42 @@
             <figcaption>Editing an event, with the day’s schedule alongside</figcaption>
           </figure>
         </article>
+        <article class="card feature feature--alt reveal" style="--d:0">
+          <div class="feature__body">
+            <p class="post__meta"><b>Project</b> · 2026 <span class="status">In progress</span></p>
+            <h3>FishScan.</h3>
+            <p>A Yuka-style scanner for aquarium fish: point your phone at a fish to find out its species and check it for visible signs of disease.</p>
+            <ul class="ticks">
+              <li>On the phone, a detector finds the fish and a classifier names the species, filtered by the tank’s water type</li>
+              <li>A FastAPI service then checks the fish for visible signs such as white spots or frayed fins</li>
+              <li>A rule-based layer and a PostgreSQL knowledge base match those signs to diseases that species can actually get in that water</li>
+              <li>24 automated Python tests pass; the Flutter app and the models are still being built and trained</li>
+            </ul>
+            <ul class="chips" aria-label="Built with"><li>Flutter</li><li>Dart</li><li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>Machine learning</li></ul>
+          </div>
+          <ol class="pipeline" aria-label="How FishScan works">
+            <li class="pipeline__stage" aria-hidden="true">Stage 1 · on the phone</li>
+            <li class="pipeline__step"><b>Find the fish</b><span>An object detector locates the fish in the camera view.</span></li>
+            <li class="pipeline__step"><b>Name the species</b><span>A classifier, limited to fish that live in your tank’s water.</span></li>
+            <li class="pipeline__stage" aria-hidden="true">Stage 2 · in the cloud</li>
+            <li class="pipeline__step"><b>Spot the signs</b><span>A second model looks for white spots, frayed fins and more.</span></li>
+            <li class="pipeline__step"><b>Match likely diseases</b><span>Rules and a PostgreSQL knowledge base keep only diseases that species can get.</span></li>
+          </ol>
+        </article>
         <article class="card post reveal" style="--d:0">
-          <p class="post__meta"><b>Project</b> · 02</p>
+          <p class="post__meta"><b>Project</b> · 03</p>
           <h3>Built a custom PC from scratch.</h3>
           <p>Selected every component, then assembled and configured the whole system myself.</p>
           <p class="post__foot">Hardware</p>
         </article>
         <article class="card post reveal" style="--d:1">
-          <p class="post__meta"><b>Project</b> · 03</p>
+          <p class="post__meta"><b>Project</b> · 04</p>
           <h3>Set up Starlink satellite internet.</h3>
           <p>Installed and configured a Starlink system for my family, from the hardware setup to the network configuration.</p>
           <p class="post__foot">Networking</p>
         </article>
         <article class="card post reveal" style="--d:2">
-          <p class="post__meta"><b>Project</b> · 04</p>
+          <p class="post__meta"><b>Project</b> · 05</p>
           <h3>Put mohamedsadik.com online.</h3>
           <p>Hosted this site on GitHub Pages with my own domain: set up the DNS A and CNAME records and turned on HTTPS.</p>
           <p class="post__foot">Web hosting &amp; DNS</p>
@@ -657,9 +690,9 @@
       <div class="stack reveal">
         <div class="stack__head"><h3 class="stack__title">Tools &amp; technologies</h3><p class="stack__note">From my computing degree, my SAP internship and my own projects.</p></div>
         <dl class="stack__groups">
-          <div><dt>Languages</dt><dd><ul class="chips"><li>Python</li><li>Java</li><li>JavaScript</li><li>SQL</li><li>C#</li><li>C++</li></ul></dd></div>
-          <div><dt>Web</dt><dd><ul class="chips"><li>React</li><li>Vite</li><li>REST APIs</li><li>Django</li><li>HTML5</li><li>CSS3</li></ul></dd></div>
-          <div><dt>Databases</dt><dd><ul class="chips"><li>SQL Server</li><li>MySQL</li><li>Oracle</li><li>SQLite</li><li>MongoDB</li></ul></dd></div>
+          <div><dt>Languages</dt><dd><ul class="chips"><li>Python</li><li>Java</li><li>JavaScript</li><li>Dart</li><li>SQL</li><li>C#</li><li>C++</li></ul></dd></div>
+          <div><dt>Web</dt><dd><ul class="chips"><li>React</li><li>Vite</li><li>REST APIs</li><li>FastAPI</li><li>Django</li><li>Flutter</li><li>HTML5</li><li>CSS3</li></ul></dd></div>
+          <div><dt>Databases</dt><dd><ul class="chips"><li>SQL Server</li><li>MySQL</li><li>PostgreSQL</li><li>Oracle</li><li>SQLite</li><li>MongoDB</li></ul></dd></div>
           <div><dt>Platforms &amp; tools</dt><dd><ul class="chips"><li>Git</li><li>GitHub</li><li>Microsoft Azure</li><li>Microsoft 365</li><li>SAP S/4HANA</li><li>SAP Datasphere</li></ul></dd></div>
           <div><dt>Ways of working</dt><dd><ul class="chips"><li>Agile / Scrum</li><li>Software development lifecycle (SDLC)</li><li>Automated testing</li></ul></dd></div>
         </dl>
@@ -751,7 +784,7 @@
         <p class="cta__sub">Open to graduate and entry-level roles.</p>
         <p class="cta__text">In software engineering, IT support or data centre operations. If you’re hiring, or you’d like to talk about my projects, I’d love to hear from you.</p>
         <div class="cta__actions">
-          <a class="btn btn--primary" href="mailto:msadik534@gmail.com?subject=Hello%20Mohamed">Email me</a>
+          <a class="btn btn--primary" href="/contactme">Send me a message <span class="arrow" aria-hidden="true">→</span></a>
           <a class="btn btn--ghost" href="https://www.linkedin.com/in/mohamed-sadik-2001" target="_blank" rel="noopener noreferrer"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg>Connect on LinkedIn <span class="arrow" aria-hidden="true">→</span></a>
           <a class="btn btn--ghost" href="https://github.com/msadik-Dev" target="_blank" rel="noopener noreferrer"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>See my GitHub <span class="arrow" aria-hidden="true">→</span></a>
         </div>
@@ -788,7 +821,7 @@
           <li><a href="mailto:msadik534@gmail.com?subject=Hello%20Mohamed">Email me</a></li>
           <li><a href="https://www.linkedin.com/in/mohamed-sadik-2001" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
           <li><a href="https://github.com/msadik-Dev" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="/contactme">Send me a message</a></li>
         </ul>
       </div>
     </div>
